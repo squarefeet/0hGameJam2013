@@ -69,14 +69,17 @@ function fire() {
 
 	var timer = setInterval( function() {
 		p.translateZ( -20 );
-		checkCollision( p );
+		if( checkCollision( p ) ) {
+			clearInterval( timer );
+			projectiles.release( p );
+		}
 	}, 16 );
 
 
 	setTimeout(function() {
 		clearInterval( timer );
 		projectiles.release( p );
-	}, 500 );
+	}, 1500 );
 }
 
 
@@ -103,8 +106,10 @@ function checkCollision( obj ) {
 		if( obj.position.distanceTo( enemies[i].position ) < 20 ) {
 			++score;
 			enemies[i].visible = false;
+			return true;
 		}
 	}
+
 }
 
 function makeEnemies() {
