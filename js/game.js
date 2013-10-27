@@ -79,7 +79,7 @@ function fire() {
 	setTimeout(function() {
 		clearInterval( timer );
 		projectiles.release( p );
-	}, 1500 );
+	}, 3000 );
 }
 
 
